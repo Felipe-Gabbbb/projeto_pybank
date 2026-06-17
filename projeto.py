@@ -56,7 +56,7 @@ while r!= '0':
 --- Data = {data_formatada}
 --- 1 = Receitas
 --- 2 = Despesas
---- 3 = Saldo
+--- 3 = Resumo financeiro
 --- 4 = Metas
 --- 5 = Extrato
 --- 0 = Sair
@@ -116,6 +116,7 @@ while r!= '0':
           print(f"--- Valor: {dados['valor']}")
           print(f"--- Mês: {dados['mes']}")
           print('-'*15)
+          mt = input('--- Pressione Enter para voltar: ')
       elif mt == '4':
         print('--- Deletar receita')
         for nome, dados in rec.items():
@@ -175,7 +176,11 @@ while r!= '0':
                     if fatura <= 0:
                       print('--- Valor inválido. Voltando.')
                       continue
-                    desp['contas'][c]= {'nome': c, 'fatura': fatura, 'status': 'pendente', 'mes': meses[agora.month-1]}
+                    desp['contas'][c]= {
+                      'nome': c, 
+                      'fatura': fatura, 
+                      'status': 'pendente', 
+                      'mes': meses[agora.month-1]}
                     print('--- Conta definida')
                   elif m == '2':
                     print('--- Cadastrar cartão')           
@@ -187,7 +192,11 @@ while r!= '0':
                     if fatura <= 0:
                       print('--- Valor inválido. Voltando.')
                       continue
-                    desp['cartões'][c]= {'nome': c, 'fatura': fatura, 'status': 'pendente', 'mes': meses[agora.month-1]}
+                    desp['cartões'][c]= {
+                      'nome': c, 
+                      'fatura': fatura, 
+                      'status': 'pendente', 
+                      'mes': meses[agora.month-1]}
                     print('--- Cartão definido')
                   else:
                     print('digite uma opção válida')
@@ -232,6 +241,7 @@ while r!= '0':
                       print(f"--- Status: {dados['status']}")
                       print(f"--- Mês: {dados['mes']}")
                       print('-'*15)
+                  gt = input('--- Pressione Enter para voltar: ')
                 elif gt == '4':
                   print('--- Deletar conta ou cartão')
                   print('-'*15)
@@ -316,7 +326,12 @@ while r!= '0':
                 if fatura <= 0:
                   print('--- Valor inválido. Voltando.')
                   continue
-                desp['outros'][c]= {'nome': c, 'fatura': fatura, 'status': 'pendente', 'mes': meses[agora.month-1]}
+                desp['outros'][c]= {
+                  'nome': c, 
+                  'fatura': fatura, 
+                  'status': 'pendente', 
+                  'mes': meses[agora.month-1]
+                }
                 print('--- Gasto definido')
               elif bt == '2':
                 print('--- Ver gastos variados do mês')
@@ -327,6 +342,7 @@ while r!= '0':
                   print(f"--- Status: {dados['status']}")
                   print(f"--- Mês: {dados['mes']}")
                   print('-'*15)
+                bt = input('--- Pressione Enter para voltar: ')
               elif bt == '3':
                 print('--- Atualizar gasto variado')
                 print('-'*15)
@@ -401,6 +417,7 @@ while r!= '0':
     print(f'--- Receitas: R$ {total_rec}')
     print(f'--- Contas pendentes: R$ {total_desp}')
     print(f'--- Valor disponível após quitar as pendências: R$ {total_rec - total_desp}')
+    r = input('--- Pressione Enter para voltar: ')
   elif r == '4':
     mt = ''
     while mt != '0':
@@ -465,6 +482,7 @@ while r!= '0':
           print(f"--- Total: {dados['total']}")
           print(f"--- Valor atual: {dados['valor']}")
           print('-'*15)
+          mt = input('--- Pressione Enter para voltar: ')
       elif mt == '4':
         print('--- Remover meta')
         j = input('--- Qual meta remover: ')
