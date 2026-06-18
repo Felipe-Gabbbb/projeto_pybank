@@ -5,27 +5,27 @@ agora = datetime.now()
 data_formatada = agora.strftime("%d/%m/%Y %H:%M")
 meses = 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
 rec = {
-'salario': {'valor' : 3000, 'mes': meses[agora.month-1]},
- 'freelance': {'valor': 500, 'mes': meses[agora.month-1]},
-   'investimentos': {'valor': 200, 'mes': meses[agora.month-1]}
+'salario': {'valor' : 3000.0, 'mes': meses[agora.month-1]},
+ 'freelance': {'valor': 500.90, 'mes': meses[agora.month-1]},
+   'investimentos': {'valor': 200.10, 'mes': meses[agora.month-1]}
 }
 desp = { 
 'cartões' :{ 
-  'caixa' : {'nome': 'caixa', 'fatura': 1000, 'status' : 'pendente', 'mes': meses[agora.month-1]},
-  'bradesco' : {'nome' : 'bradesco', 'fatura': 500, 'status' : 'pendente', 'mes': meses[agora.month-1]},
+  'caixa' : {'nome': 'caixa', 'fatura': 1000.0, 'status' : 'pendente', 'mes': meses[agora.month-1]},
+  'bradesco' : {'nome' : 'bradesco', 'fatura': 500.0, 'status' : 'pendente', 'mes': meses[agora.month-1]},
          },
 'contas' :{
-  'luz': {'nome':'luz','fatura':150, 'status' : 'pendente', 'mes': meses[agora.month-1]},
-  'agua': {'nome':'agua','fatura':100, 'status' : 'pendente', 'mes': meses[agora.month-1]},
+  'luz': {'nome':'luz','fatura':150.86, 'status' : 'pendente', 'mes': meses[agora.month-1]},
+  'agua': {'nome':'agua','fatura':100.95, 'status' : 'pendente', 'mes': meses[agora.month-1]},
 },
 'outros' : {
-  'shoppe':{'nome':'shoppe','fatura':236, 'status' : 'pendente', 'mes': meses[agora.month-1]},
-  'amazon':{'nome':'amazon','fatura':120, 'status' : 'pendente', 'mes': meses[agora.month-1]},
+  'shoppe':{'nome':'shoppe','fatura':236.50, 'status' : 'pendente', 'mes': meses[agora.month-1]},
+  'amazon':{'nome':'amazon','fatura':120.25, 'status' : 'pendente', 'mes': meses[agora.month-1]},
 }
 }
 metas = {
-  'carro': {'nome' :'carro','total': 40000, 'valor' : 36500}, 
-  'moto' : {'nome' :'moto', 'total':15000, 'valor': 8000},
+  'carro': {'nome' :'carro','total': 40000.0, 'valor' : 36500.50, 'estado' : True}, 
+  'moto' : {'nome' :'moto', 'total':15000.0, 'valor': 8000.66, 'estado' : True},
 
 }
 try:
@@ -64,78 +64,79 @@ while r!= '0':
   ''')
   r =input('opção: ')
   if r == '1':
-    print('--- Receitas')
-    print('-'*15)
-    print(f'''
+    mt = ''
+    while mt != '0':
+        os.system('cls' if os.name=='nt' else 'clear')
+        print('--- Receitas')
+        print('-'*15)
+        print(f'''
 --- 1 Adicionar receita
 --- 2 Atualizar receita
 --- 3 Ver receitas
 --- 4 Deletar receita
 --- 0 Voltar          
-          ''')
-    mt = input('--- Opção: ')
-    while mt != '0':
-      if mt == '1':
-        print('--- Adicionar receita')
-        print('-'*15)
-        c = input('--- Definir nome da receita: ')
-        if c in rec:
-          print('--- Receita já existe. Voltando.')
-          mt = input('--- Opção: ')
-          continue
-        valor = int(input('--- Digite o valor da receita:  '))
-        if valor <= 0:
-          print('--- Valor inválido. Voltando.')
-          mt = input('--- Opção: ')
-          continue
-        rec[c]= {'valor': valor, 'mes': meses[agora.month-1]}
-        print('--- Receita definida')
-      elif mt == '2':
-        print('--- Atualizar receita')
-        print('-'*15)
-        for nome, dados in rec.items():
-          print(f"--- Nome: {nome}")
-          print(f"--- Valor: {dados['valor']}")
-          print(f"--- Mês: {dados['mes']}")
+              ''')
+        mt = input('--- Opção: ')
+        if mt == '1':
+          print('--- Adicionar receita')
           print('-'*15)
-        a = input('--- Qual receita atualizar: ')
-        if a in rec:
-          a2 = int(input('--- Digite o novo valor da receita:  '))
-          if a2 <= 0:
-            print('--- Valor inválido. Voltando.')
+          c = input('--- Definir nome da receita: ')
+          if c in rec:
+            print('--- Receita já existe. Voltando.')
+            mt = input('--- Opção: ')
             continue
-          rec[a]['valor'] = a2
-          print('--- Receita atualizada')
-        else:
-          print('--- Receita não encontrada')
-      elif mt == '3':
-        print('--- Ver receitas')
-        print('-'*15)
-        for nome, dados in rec.items():
-          print(f"--- Nome: {nome}")
-          print(f"--- Valor: {dados['valor']}")
-          print(f"--- Mês: {dados['mes']}")
+          valor = float(input('--- Digite o valor da receita:  '))
+          if valor <= 0:
+            print('--- Valor inválido. Voltando.')
+            mt = input('--- Opção: ')
+            continue
+          rec[c]= {'valor': valor, 'mes': meses[agora.month-1]}
+          print('--- Receita definida')
+        elif mt == '2':
+          print('--- Atualizar receita')
           print('-'*15)
-          mt = input('--- Pressione Enter para voltar: ')
-      elif mt == '4':
-        print('--- Deletar receita')
-        for nome, dados in rec.items():
-          print(f"--- Nome: {nome}")
-          print(f"--- Valor: {dados['valor']}")
-          print(f"--- Mês: {dados['mes']}")
-          print('-'*15)
-        d = input('--- Qual receita deletar: ')
-        if d in rec:
-          print(rec[d])
-          d1 = input('--- Tem certeza? (S/N) ')
-          if (d1 == 's') or (d1 == 'S'):
-            del rec[d]
-            print(f'--- Receita {d} deletada')
+          for nome, dados in rec.items():
+            print(f"--- Nome: {nome}")
+            print(f"--- Valor: {dados['valor']}")
+            print(f"--- Mês: {dados['mes']}")
+            print('-'*15)
+          a = input('--- Qual receita atualizar: ')
+          if a in rec:
+            a2 = float(input('--- Digite o novo valor da receita:  '))
+            if a2 <= 0:
+              print('--- Valor inválido. Voltando.')
+              continue
+            rec[a]['valor'] = a2
+            print('--- Receita atualizada')
           else:
-            print('--- Voltando.')
-        else:
-          print('--- Receita não encontrada.')
-      mt = input('--- Opção: ')
+            print('--- Receita não encontrada')
+        elif mt == '3':
+          print('--- Ver receitas')
+          print('-'*15)
+          for nome, dados in rec.items():
+            print(f"--- Nome: {nome}")
+            print(f"--- Valor: {dados['valor']}")
+            print(f"--- Mês: {dados['mes']}")
+            print('-'*15)
+          w = input('--- Pressione Enter para voltar: ')
+        elif mt == '4':
+          print('--- Deletar receita')
+          for nome, dados in rec.items():
+            print(f"--- Nome: {nome}")
+            print(f"--- Valor: {dados['valor']}")
+            print(f"--- Mês: {dados['mes']}")
+            print('-'*15)
+          d = input('--- Qual receita deletar: ')
+          if d in rec:
+            print(rec[d])
+            d1 = input('--- Tem certeza? (S/N) ')
+            if (d1 == 's') or (d1 == 'S'):
+              del rec[d]
+              print(f'--- Receita {d} deletada')
+            else:
+              print('--- Voltando.')
+          else:
+            print('--- Receita não encontrada.')
   elif r == '2':
     mt = ''
     while mt != '0':
@@ -172,7 +173,7 @@ while r!= '0':
                     if c in desp['contas']:
                       print('--- Conta já existe. Voltando.')
                       continue
-                    fatura = int(input('digite o valor total da fatura:  '))
+                    fatura = float(input('digite o valor total da fatura:  '))
                     if fatura <= 0:
                       print('--- Valor inválido. Voltando.')
                       continue
@@ -188,7 +189,7 @@ while r!= '0':
                     if c in desp['cartões']:
                       print('--- Cartão já existe. Voltando.')
                       continue
-                    fatura = int(input('digite o valor total da fatura:  '))
+                    fatura = float(input('digite o valor total da fatura:  '))
                     if fatura <= 0:
                       print('--- Valor inválido. Voltando.')
                       continue
@@ -214,14 +215,14 @@ while r!= '0':
                       print('-'*15)
                   a = input('--- Qual conta ou cartão atualizar: ')
                   if a in desp['contas']:
-                    a2 = int(input('--- Digite o novo valor da fatura:  '))
+                    a2 = float(input('--- Digite o novo valor da fatura:  '))
                     if a2 <= 0:
                       print('--- Valor inválido. Voltando.')
                       continue
                     desp['contas'][a]['fatura'] = a2
                     print('--- Conta atualizada')
                   elif a in desp['cartões']:
-                    a2 = int(input('--- Digite o novo valor da fatura:  '))
+                    a2 = float(input('--- Digite o novo valor da fatura:  '))
                     if a2 <= 0:
                       print('--- Valor inválido. Voltando.')
                       continue
@@ -322,7 +323,7 @@ while r!= '0':
                 if c in desp['outros']:
                   print('--- Gasto já existe. Voltando.')
                   continue
-                fatura = int(input('--- Digite o valor total do gasto:  '))
+                fatura = float(input('--- Digite o valor total do gasto:  '))
                 if fatura <= 0:
                   print('--- Valor inválido. Voltando.')
                   continue
@@ -354,7 +355,7 @@ while r!= '0':
                   print('-'*15)
                 a = input('--- Qual gasto atualizar: ')
                 if a in desp['outros']:
-                  a2 = int(input('--- Digite o novo valor do gasto:  '))
+                  a2 = float(input('--- Digite o novo valor do gasto:  '))
                   if a2 <= 0:
                     print('--- Valor inválido. Voltando.')
                     continue
@@ -407,7 +408,6 @@ while r!= '0':
     total_rec = 0
     for dados in rec.values():
       total_rec += dados['valor']
-
     total_desp = 0
     for categoria in desp.values():
         for gasto in categoria.values():
@@ -438,12 +438,12 @@ while r!= '0':
           print('--- Meta já existe. Voltando.')
           mt = input('--- Opção: ')
           continue
-        total = int(input('--- Digite o valor total da meta:  '))
+        total = float(input('--- Digite o valor total da meta:  '))
         if total <= 0:
           print('--- Valor inválido. Voltando.')
           mt = input('--- Opção: ')
           continue
-        metas[m]= {'nome': m, 'total': total, 'valor': 0}
+        metas[m]= {'nome': m, 'total': total, 'valor': 0, 'estado': True}
         print('--- Meta definida')
       elif mt == '2':
         print('--- Adicionar valor a meta')
@@ -452,46 +452,66 @@ while r!= '0':
           print(f"--- Nome: {nome}")
           print(f"--- Total: {dados['total']}")
           print(f"--- Valor atual: {dados['valor']}")
+          print(f"--- Estado: {'Ativa' if  dados['estado'] else 'Inativa'}")
           print('-'*15)
         a = input('--- Qual meta adicionar o valor: ')
         if a in metas:
-          a2= int(input('--- Digite o valor a ser adicionado:  '))
+          a2= float(input('--- Digite o valor a ser adicionado:  '))
           if a2 <= 0:
             print('--- Valor inválido. Voltando.')
             continue
           if metas[a]['valor'] + a2 >= metas[a]['total']:
             metas[a]['valor'] = metas[a]['total']
             print('--- Valor adicionado ultrapassa o total da meta. Meta atingida.')
-            print(f'--- Meta = {metas[a]}')
-
+            print('--- Meta', a, 'atingida!')
+            print(f'--- Objetivo: {metas[a]["total"]}')
+            print(f'--- Valor atual: {metas[a]["valor"]}')
             a3 = input('--- Deseja sacar o dinheiro? (S/N)')
             if a3 == 's' or a3 == 'S':
               rec[f'Meta_{a}'] = {'valor': metas[a]['valor'], 'mes': meses[agora.month-1]}
-              del metas[a]
+              metas[a]['estado'] = False
+              print(f'--- Meta {a} desativada')
+              print(f'--- Dinheiro da meta {a} adicionado às receitas como Meta_{a}')
           else:
             metas[a]['valor'] += a2
             print('--- Valor adicionado a meta')
-            print(f'--- Meta = {metas[a]}')
+            print(f'--- Meta: {a}')
+            print(f'--- Objetivo: {metas[a]["total"]}')
+            print(f'--- Valor atual: {metas[a]["valor"]}')
         else:
           print('--- Meta não encontrada')
       elif mt == '3':
         print('--- Ver metas')
         print('-'*15)
         for nome, dados in metas.items():
-          print(f"--- Nome: {nome}")
-          print(f"--- Total: {dados['total']}")
-          print(f"--- Valor atual: {dados['valor']}")
-          print('-'*15)
-          mt = input('--- Pressione Enter para voltar: ')
+          if dados['estado']:
+            print(f"--- Nome: {nome}")
+            print(f"--- Total: {dados['total']}")
+            print(f"--- Valor atual: {dados['valor']}")
+            print(f"--- Estado: {'Ativa' if dados['estado'] else 'Inativa'}")
+            print('-'*15)
+        b = input('--- Deseja ver as metas inativas? (S/N) ')
+        if (b == 's') or (b == 'S'):
+              for nome, dados in metas.items():
+                if not dados['estado']:
+                  print(f"--- Nome: {nome}")
+                  print(f"--- Total: {dados['total']}")
+                  print(f"--- Valor atual: {dados['valor']}")
+                  print(f"--- Estado: {'Ativa' if dados['estado'] else 'Inativa'}")
+                  print('-'*15)
+        y = input('--- Pressione Enter para voltar: ')
       elif mt == '4':
-        print('--- Remover meta')
-        j = input('--- Qual meta remover: ')
+        print('--- Desativar meta')
+        j = input('--- Qual meta desativar: ')
         if j in metas:
-          print(metas[j])
+          print(f'--- Meta {j} encontrada')
+          print(f'--- Objetivo da meta era {metas[j]["total"]} e o valor atual é {metas[j]["valor"]}')
           j1 = input('--- Tem certeza? ')
           if (j1 == 's') or (j1 == 'S'):
-            del metas[j]
-            print(f'--- Meta {j} removida')
+            print(f'--- Meta {j} desativada')
+            rec[f'Meta_{j}'] = {'valor': metas[j]['valor'], 'mes': meses[agora.month-1]}
+            print(f'--- Dinheiro da meta {j} adicionado às receitas como Meta_{j}')
+            metas[j]['estado'] = False
           else:
             print('--- Voltando.')
         else:
@@ -515,7 +535,6 @@ while r!= '0':
           for gasto in categoria.values():
               if gasto['mes'] == jk:
                   total_desp += gasto['fatura']
-
       print('-' * 15)
       print(f'--- Extrato do mês de {jk}')
       print(f'--- Receita: R$ {total_rec}')
