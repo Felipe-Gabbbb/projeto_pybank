@@ -1,0 +1,32 @@
+import pickle
+def carregar_dados():
+    try:
+        arqRec = open("rec.pkl", "rb")
+        rec = pickle.load(arqRec)
+        arqRec.close()
+        arqDesp = open("desp.pkl", "rb")
+        desp = pickle.load(arqDesp)
+        arqDesp.close()
+        arqMetas = open("metas.pkl", "rb")
+        metas = pickle.load(arqMetas)
+        arqMetas.close()
+    except (FileNotFoundError, EOFError):
+        print("--- Nenhum arquivo de dados encontrado. Iniciando com dados vazios.")
+        arqRec = open("rec.pkl", "wb")
+        arqDesp = open("desp.pkl", "wb")
+        arqMetas = open("metas.pkl", "wb")
+        arqRec.close()
+        arqDesp.close()
+        arqMetas.close()
+def salvar_dados(rec, desp, metas):
+    arqRec = open("rec.pkl", "wb")
+    pickle.dump(rec, arqRec)
+    arqRec.close()
+    arqDesp = open("desp.pkl", "wb")
+    pickle.dump(desp, arqDesp)
+    arqDesp.close()
+    arqMetas = open("metas.pkl", "wb")
+    pickle.dump(metas, arqMetas)
+    arqMetas.close()
+    print("--- Dados salvos com sucesso")
+    print("--- Fim do programa")
