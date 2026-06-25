@@ -9,7 +9,7 @@ def menu_resumo(rec, desp):
                         if gasto['status'] == 'pendente':
                                 total_desp += gasto['fatura']
         print('--- Situação financeira')
-        print(f'--- Receitas: R$ {total_rec}')
-        print(f'--- Contas pendentes: R$ {total_desp}')
-        print(f'--- Valor disponível após quitar as pendências: R$ {total_rec - total_desp}')
+        print(f'--- Receitas: R$ {total_rec:.2f}')
+        print(f'--- Contas pendentes: R$ {total_desp:.2f}')
+        print(f'--- Valor disponível após quitar as pendências: R$ {total_rec - total_desp:.2f}')
         input('--- Pressione Enter para voltar: ')
