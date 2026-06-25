@@ -18,9 +18,9 @@ def menu_extrato(rec, desp, meses):
                                     total_desp += gasto['fatura']
             print('-' * 15)
             print(f'--- Extrato do mês de {jk}')
-            print(f'--- Receita: R$ {total_rec}')
-            print(f'--- Despesas: R$ {total_desp}')
-            print(f'--- Saldo: R$ {total_rec - total_desp}')
+            print(f'--- Receita: R$ {total_rec:.2f}')
+            print(f'--- Despesas: R$ {total_desp:.2f}')
+            print(f'--- Saldo: R$ {total_rec - total_desp:.2f}')
             nt = input('--- Deseja ver o saldo detalhado? (S/N) ')
             if (nt == 's') or (nt == 'S'):
                         print('--- Saldo detalhado')
