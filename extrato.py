@@ -6,7 +6,7 @@ def menu_extrato(rec, desp, meses):
             if jk not in meses:
                     print('--- Mês inválido. Voltando ao menu principal.')
                     input('--- Pressione Enter para voltar: ')
-                    continue
+                    return
             total_rec = 0
             for dados in rec.values():
                     if dados['mes'] == jk:
